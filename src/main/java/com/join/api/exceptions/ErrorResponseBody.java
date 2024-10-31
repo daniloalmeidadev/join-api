@@ -9,11 +9,11 @@ import java.util.List;
 @Getter
 public class ErrorResponseBody {
 
-    private int status;
+    private final int status;
 
-    private String message;
+    private final String message;
 
-    private List<Fields> fields;
+    private final List<Fields> fields;
 
     public ErrorResponseBody(HttpStatusCode status, String message, List<Fields> Fields) {
         this.status = status.value();

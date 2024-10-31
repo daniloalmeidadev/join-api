@@ -1,5 +1,6 @@
 package com.join.api.domain.dtos.category;
 
+import com.join.api.domain.entities.Category;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -15,4 +16,14 @@ public class CategoryRequestDTO {
 
     @Size(min = 10, max = 200, message = "A descrição deve ter entre 10 e 200 caracteres")
     private String description;
+
+    public Category toEntity() {
+
+        Category category = new Category();
+
+        category.setName(this.name);
+        category.setDescription(this.description);
+
+        return category;
+    }
 }
