@@ -17,18 +17,15 @@ public class CategoryUpdateService implements ICategoryUpdateService {
 
     public void execute(Long categoryId, CategoryRequestDTO categoryRequestDTO) {
 
-        Category generator = categoryRepository.findById(categoryId).orElseThrow(() -> new NotFoundException("Categoria não encontrada"));
+        Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new NotFoundException("Categoria não encontrada"));
 
-        Optional<Category> existingCategory = categoryRepository.findByName(categoryRequestDTO.getName());
-        if (existingCategory.isPresent()) {
+        if (categoryRepository.existsByName(categoryRequestDTO.getName())) {
             throw new NotFoundException("Esse nome de categoria já foi cadastrado");
         }
 
-        Category newCategory = categoryRequestDTO.toEntity();
+        category.setName(categoryRequestDTO.getName());
+        category.setDescription(categoryRequestDTO.getDescription());
 
-        newCategory.setCategoryId(categoryId);
-        newCategory.setCreatedAt(generator.getCreatedAt());
-
-        categoryRepository.save(newCategory);
+        categoryRepository.save(category);
     }
 }

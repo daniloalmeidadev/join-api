@@ -18,8 +18,7 @@ public class CategoryCreateService implements ICategoryCreateService {
 
     public CategoryResponseDTO execute(CategoryRequestDTO categoryRequestDTO) {
 
-        Optional<Category> existingCategory = categoryRepository.findByName(categoryRequestDTO.getName());
-        if (existingCategory.isPresent()) {
+        if (categoryRepository.existsByName(categoryRequestDTO.getName())) {
             throw new NotFoundException("Esse nome de categoria já foi cadastrado");
         }
 
