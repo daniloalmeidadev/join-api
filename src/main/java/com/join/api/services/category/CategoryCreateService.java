@@ -4,6 +4,7 @@ import com.join.api.domain.dtos.category.CategoryRequestDTO;
 import com.join.api.domain.dtos.category.CategoryResponseDTO;
 import com.join.api.domain.entities.Category;
 import com.join.api.domain.repositories.CategoryRepository;
+import com.join.api.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +18,15 @@ public class CategoryCreateService implements ICategoryCreateService {
 
     public CategoryResponseDTO execute(CategoryRequestDTO categoryRequestDTO) {
 
-        Category categoryToSave = categoryRequestDTO.toEntity();
+        Optional<Category> existingCategory = categoryRepository.findByName(categoryRequestDTO.getName());
+        if (existingCategory.isPresent()) {
+            throw new NotFoundException("Esse nome de categoria já foi cadastrado");
+        }
 
-        Category categorySaved = categoryRepository.save(categoryToSave);
+        Category newCategory = categoryRequestDTO.toEntity();
 
-        return CategoryResponseDTO.fromEntity(categorySaved);
+        Category savedCategory = categoryRepository.save(newCategory);
+
+        return CategoryResponseDTO.fromEntity(savedCategory);
     }
-
 }

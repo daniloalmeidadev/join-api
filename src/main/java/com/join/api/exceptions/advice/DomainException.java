@@ -1,4 +1,4 @@
-package com.join.api.exceptions;
+package com.join.api.exceptions.advice;
 
 import lombok.Getter;
 

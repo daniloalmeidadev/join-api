@@ -1,7 +1,6 @@
-package com.join.api.exceptions;
+package com.join.api.exceptions.advice;
 
 import lombok.Getter;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 
 import java.util.List;
@@ -14,6 +13,12 @@ public class ErrorResponseBody {
     private final String message;
 
     private final List<Fields> fields;
+
+    public ErrorResponseBody(HttpStatusCode status, String message) {
+        this.status = status.value();
+        this.message = message;
+        this.fields = null;
+    }
 
     public ErrorResponseBody(HttpStatusCode status, String message, List<Fields> Fields) {
         this.status = status.value();
