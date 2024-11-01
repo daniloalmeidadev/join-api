@@ -8,8 +8,6 @@ import com.join.api.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class CategoryCreateService implements ICategoryCreateService {
 

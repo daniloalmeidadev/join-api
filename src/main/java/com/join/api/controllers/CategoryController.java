@@ -3,14 +3,13 @@ package com.join.api.controllers;
 import com.join.api.domain.dtos.category.CategoryRequestDTO;
 import com.join.api.domain.dtos.category.CategoryResponseDTO;
 import com.join.api.services.category.ICategoryCreateService;
+import com.join.api.services.category.ICategoryDeleteService;
 import com.join.api.services.category.ICategoryGetService;
 import com.join.api.services.category.ICategoryUpdateService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/v1/category")
@@ -20,10 +19,13 @@ public class CategoryController {
     private ICategoryCreateService categoryCreateService;
 
     @Autowired
+    private ICategoryGetService categoryGetService;
+
+    @Autowired
     private ICategoryUpdateService categoryUpdateService;
 
     @Autowired
-    private ICategoryGetService categoryGetService;
+    private ICategoryDeleteService categoryDeleteService;
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
@@ -46,5 +48,12 @@ public class CategoryController {
             @Valid @RequestBody CategoryRequestDTO categoryRequestDTO) {
 
         categoryUpdateService.execute(categoryId, categoryRequestDTO);
+    }
+
+    @DeleteMapping("/{categoryId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCategory(@PathVariable Long categoryId) {
+
+        categoryDeleteService.execute(categoryId);
     }
 }
