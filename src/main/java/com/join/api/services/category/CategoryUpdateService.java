@@ -15,7 +15,8 @@ public class CategoryUpdateService implements ICategoryUpdateService {
 
     public void execute(Long categoryId, CategoryUpdateRequestDTO categoryUpdateRequestDTO) {
 
-        Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new NotFoundException("Categoria não encontrada"));
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new NotFoundException("Categoria não encontrada"));
 
         if (categoryUpdateRequestDTO.getName() != null) {
             if (categoryRepository.existsByName(categoryUpdateRequestDTO.getName())) {

@@ -26,7 +26,6 @@ public class Product {
     @Column(unique = true)
     private String name;
 
-    @NotNull
     private BigDecimal price;
 
     private Integer quantity;
