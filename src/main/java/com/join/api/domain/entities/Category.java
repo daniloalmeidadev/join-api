@@ -23,7 +23,6 @@ public class Category {
     @Column(unique = true)
     private String name;
 
-    @NotNull
     private String description;
 
     @CreationTimestamp
