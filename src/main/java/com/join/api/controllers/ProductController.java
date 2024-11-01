@@ -13,7 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/v1/product")
+@RequestMapping("/v1/")
 public class ProductController {
 
     @Autowired
@@ -28,21 +28,23 @@ public class ProductController {
     @Autowired
     private IProductDeleteService productDeleteService;
 
-    @PostMapping()
+    @PostMapping("/categories/{categoryId}/products")
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductResponseDTO createProduct(@Valid @RequestBody ProductCreateRequestDTO productCreateRequestDTO) {
+    public ProductResponseDTO createProduct(
+            @PathVariable Long categoryId,
+            @Valid @RequestBody ProductCreateRequestDTO productCreateRequestDTO) {
 
-        return productCreateService.execute(productCreateRequestDTO);
+        return productCreateService.execute(categoryId, productCreateRequestDTO);
     }
 
-    @GetMapping("/{productId}")
+    @GetMapping("/products/{productId}")
     @ResponseStatus(HttpStatus.OK)
     public ProductResponseDTO consultProduct(@PathVariable Long productId) {
 
         return productGetService.execute(productId);
     }
 
-    @PutMapping("/{productId}")
+    @PutMapping("/products/{productId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateProduct(
             @PathVariable Long productId,
@@ -51,7 +53,7 @@ public class ProductController {
         productUpdateService.execute(productId, productUpdateRequestDTO);
     }
 
-    @DeleteMapping("/{productId}")
+    @DeleteMapping("/products/{productId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteProduct(@PathVariable Long productId) {
 

@@ -5,5 +5,5 @@ import com.join.api.domain.dtos.product.ProductResponseDTO;
 
 public interface IProductCreateService {
 
-    public ProductResponseDTO execute(ProductCreateRequestDTO productCreateRequestDTO);
+    public ProductResponseDTO execute(Long categoryId, ProductCreateRequestDTO productCreateRequestDTO);
 }

@@ -13,7 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/v1/category")
+@RequestMapping("/v1/categories")
 public class CategoryController {
 
     @Autowired

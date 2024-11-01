@@ -1,5 +1,6 @@
 package com.join.api.domain.dtos.product;
 
+import com.join.api.domain.entities.Category;
 import com.join.api.domain.entities.Product;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,8 @@ public class ProductResponseDTO {
 
     private Integer quantity;
 
+    private Category category;
+
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
@@ -31,6 +34,7 @@ public class ProductResponseDTO {
         productResponseDTO.setName(product.getName());
         productResponseDTO.setPrice(product.getPrice());
         productResponseDTO.setQuantity(product.getQuantity());
+        productResponseDTO.setCategory(product.getCategory());
         productResponseDTO.setCreatedAt(product.getUpdatedAt());
         productResponseDTO.setUpdatedAt(product.getUpdatedAt());
 
