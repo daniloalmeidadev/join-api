@@ -4,6 +4,7 @@ import com.join.api.domain.dtos.product.ProductCreateRequestDTO;
 import com.join.api.domain.dtos.product.ProductResponseDTO;
 import com.join.api.domain.dtos.product.ProductUpdateRequestDTO;
 import com.join.api.services.product.IProductCreateService;
+import com.join.api.services.product.IProductGetService;
 import com.join.api.services.product.IProductUpdateService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class ProductController {
     private IProductCreateService productCreateService;
 
     @Autowired
+    private IProductGetService productGetService;
+
+    @Autowired
     private IProductUpdateService productUpdateService;
 
     @PostMapping()
@@ -29,8 +33,9 @@ public class ProductController {
 
     @GetMapping("/{productId}")
     @ResponseStatus(HttpStatus.OK)
-    public void consultProduct() {
+    public ProductResponseDTO consultProduct(@PathVariable Long productId) {
 
+        return productGetService.execute(productId);
     }
 
     @PutMapping("/{productId}")
