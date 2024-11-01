@@ -4,6 +4,7 @@ import com.join.api.domain.dtos.product.ProductCreateRequestDTO;
 import com.join.api.domain.dtos.product.ProductResponseDTO;
 import com.join.api.domain.dtos.product.ProductUpdateRequestDTO;
 import com.join.api.services.product.IProductCreateService;
+import com.join.api.services.product.IProductDeleteService;
 import com.join.api.services.product.IProductGetService;
 import com.join.api.services.product.IProductUpdateService;
 import jakarta.validation.Valid;
@@ -23,6 +24,9 @@ public class ProductController {
 
     @Autowired
     private IProductUpdateService productUpdateService;
+
+    @Autowired
+    private IProductDeleteService productDeleteService;
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
@@ -49,7 +53,8 @@ public class ProductController {
 
     @DeleteMapping("/{productId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteProduct() {
+    public void deleteProduct(@PathVariable Long productId) {
 
+        productDeleteService.execute(productId);
     }
 }
