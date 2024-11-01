@@ -1,6 +1,6 @@
 package com.join.api.services.category;
 
-import com.join.api.domain.dtos.category.CategoryRequestDTO;
+import com.join.api.domain.dtos.category.CategoryCreateRequestDTO;
 import com.join.api.domain.dtos.category.CategoryResponseDTO;
 import com.join.api.domain.entities.Category;
 import com.join.api.domain.repositories.CategoryRepository;
@@ -14,13 +14,13 @@ public class CategoryCreateService implements ICategoryCreateService {
     @Autowired
     CategoryRepository categoryRepository;
 
-    public CategoryResponseDTO execute(CategoryRequestDTO categoryRequestDTO) {
+    public CategoryResponseDTO execute(CategoryCreateRequestDTO categoryCreateRequestDTO) {
 
-        if (categoryRepository.existsByName(categoryRequestDTO.getName())) {
+        if (categoryRepository.existsByName(categoryCreateRequestDTO.getName())) {
             throw new NotFoundException("Esse nome de categoria já foi cadastrado");
         }
 
-        Category newCategory = categoryRequestDTO.toEntity();
+        Category newCategory = categoryCreateRequestDTO.toEntity();
 
         Category savedCategory = categoryRepository.save(newCategory);
 

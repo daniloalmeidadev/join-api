@@ -1,7 +1,8 @@
 package com.join.api.controllers;
 
-import com.join.api.domain.dtos.category.CategoryRequestDTO;
+import com.join.api.domain.dtos.category.CategoryCreateRequestDTO;
 import com.join.api.domain.dtos.category.CategoryResponseDTO;
+import com.join.api.domain.dtos.category.CategoryUpdateRequestDTO;
 import com.join.api.services.category.ICategoryCreateService;
 import com.join.api.services.category.ICategoryDeleteService;
 import com.join.api.services.category.ICategoryGetService;
@@ -29,14 +30,14 @@ public class CategoryController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public CategoryResponseDTO createCategory(@Valid @RequestBody CategoryRequestDTO categoryRequestDTO) {
+    public CategoryResponseDTO createCategory(@Valid @RequestBody CategoryCreateRequestDTO categoryCreateRequestDTO) {
 
-        return categoryCreateService.execute(categoryRequestDTO);
+        return categoryCreateService.execute(categoryCreateRequestDTO);
     }
 
     @GetMapping("/{categoryId}")
     @ResponseStatus(HttpStatus.OK)
-    public CategoryResponseDTO listCategory(@PathVariable Long categoryId) {
+    public CategoryResponseDTO consultCategory(@PathVariable Long categoryId) {
 
         return categoryGetService.execute(categoryId);
     }
@@ -45,9 +46,9 @@ public class CategoryController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateCategory(
             @PathVariable Long categoryId,
-            @Valid @RequestBody CategoryRequestDTO categoryRequestDTO) {
+            @Valid @RequestBody CategoryUpdateRequestDTO categoryUpdateRequestDTO) {
 
-        categoryUpdateService.execute(categoryId, categoryRequestDTO);
+        categoryUpdateService.execute(categoryId, categoryUpdateRequestDTO);
     }
 
     @DeleteMapping("/{categoryId}")

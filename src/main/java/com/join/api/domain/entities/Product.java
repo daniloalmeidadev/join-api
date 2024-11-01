@@ -8,25 +8,28 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "categories")
-public class Category {
+@Table(name = "products")
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long categoryId;
+    private Long productId;
 
     @NotNull
     @Size(max = 50)
     @Column(unique = true)
     private String name;
 
-    @Size(max = 200)
-    private String description;
+    @NotNull
+    private BigDecimal price;
+
+    private Integer quantity;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

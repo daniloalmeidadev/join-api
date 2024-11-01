@@ -1,6 +1,6 @@
 package com.join.api.services.category;
 
-import com.join.api.domain.dtos.category.CategoryRequestDTO;
+import com.join.api.domain.dtos.category.CategoryUpdateRequestDTO;
 import com.join.api.domain.entities.Category;
 import com.join.api.domain.repositories.CategoryRepository;
 import com.join.api.exceptions.NotFoundException;
@@ -13,16 +13,19 @@ public class CategoryUpdateService implements ICategoryUpdateService {
     @Autowired
     CategoryRepository categoryRepository;
 
-    public void execute(Long categoryId, CategoryRequestDTO categoryRequestDTO) {
+    public void execute(Long categoryId, CategoryUpdateRequestDTO categoryUpdateRequestDTO) {
 
         Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new NotFoundException("Categoria não encontrada"));
 
-        if (categoryRepository.existsByName(categoryRequestDTO.getName())) {
-            throw new NotFoundException("Esse nome de categoria já foi cadastrado");
+        if (categoryUpdateRequestDTO.getName() != null) {
+            if (categoryRepository.existsByName(categoryUpdateRequestDTO.getName())) {
+                throw new NotFoundException("Esse nome de categoria já foi cadastrado");
+            }
+            category.setName(categoryUpdateRequestDTO.getName());
         }
-
-        category.setName(categoryRequestDTO.getName());
-        category.setDescription(categoryRequestDTO.getDescription());
+        if (categoryUpdateRequestDTO.getDescription() != null) {
+            category.setDescription(categoryUpdateRequestDTO.getDescription());
+        }
 
         categoryRepository.save(category);
     }
