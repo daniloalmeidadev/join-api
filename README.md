@@ -1,8 +1,8 @@
-## Spring Boot Project Template
+# Spring Boot Project Template
 
 It's a template Spring Boot API.
 
-# Technology
+## Technology
 
 Spring Boot
 Java
@@ -12,7 +12,7 @@ Lombok
 Devtools
 Swagger
 
-# Getting Started
+## Getting Started
 
 Firstly, you need to install the MySQL database. If you have Docker installed on your computer, you can run the following command to install and configure MySQL from Docker Hub:
 
@@ -25,7 +25,7 @@ Once Docker is installed and running, use the following command to start the API
 Note: You need to enable Build Automatically in your IDE.
 In IntelliJ, go to Settings > Build, Execution, Deployment > Compiler and check the option Build project automatically.
 
-# How to use
+## How to use
 
 Below is an example of a POST request to create a Category:
 
@@ -35,14 +35,14 @@ You can see all the endpoints through Swagger at the link `http://localhost:8080
 
 ![image](https://github.com/user-attachments/assets/54d10384-5594-457c-ae9c-4d93a28633f2)
 
-# Links
+## Links
 
 https://github.com/daniloalmeidadev/template-api
 
-# Versioning
+## Versioning
 
 1.0.0.0
 
-# Authors
+## Authors
 
 Danilo Almeida (https://github.com/daniloalmeidadev)
