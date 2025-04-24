@@ -40,7 +40,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorResponseBody errorResponseBody =
                 new ErrorResponseBody(
                         status,
-                        "Campos inválidos",
+                        "Invalid fields",
                         listFieldsResponse);
 
         return new ResponseEntity<>(errorResponseBody, status);
