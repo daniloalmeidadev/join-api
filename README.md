@@ -10,3 +10,7 @@ Once Docker is installed and running, use the command below to start the API:
 
 Note: You need to enable Build Automatically in your IDE.
 In IntelliJ, go to Settings > Build, Execution, Deployment > Compiler and check the option Build project automatically.
+
+You can see all the endpoints through Swagger::
+
+![image](https://github.com/user-attachments/assets/54d10384-5594-457c-ae9c-4d93a28633f2)
